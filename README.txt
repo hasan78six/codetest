@@ -1,45 +1,27 @@
-Do at least ONE of the following tasks: refactor is mandatory. Write tests is optional, will be good bonus to see it. 
-Please do not invest more than 2-4 hours on this.
-Upload your results to a Github repo, for easier sharing and reviewing.
-
-Thank you and good luck!
-
-
-
-Code to refactor
-=================
-1) app/Http/Controllers/BookingController.php
-2) app/Repository/BookingRepository.php
-
-Code to write tests (optional)
-=====================
-3) App/Helpers/TeHelper.php method willExpireAt
-4) App/Repository/UserRepository.php, method createOrUpdate
-
-
-----------------------------
-
-What I expect in your repo:
-
-X. A readme with:   Your thoughts about the code. What makes it amazing code. Or what makes it ok code. Or what makes it terrible code. How would you have done it. Thoughts on formatting, structure, logic.. The more details that you can provide about the code (what's terrible about it or/and what is good about it) the easier for us to assess your coding style, mentality etc
-
-And 
-
-Y.  Refactor it if you feel it needs refactoring. The more love you put into it. The easier for us to asses your thoughts, code principles etc
+Following are the things which can help improve things over all code and 
+according to me code looks average:
+1. PHP Doc is not properly written throught the code nor detail is mentioned what function is all about.
+2. Exception handling using try, catch and finally block is missing.
+3. Logging should be added using report function.
+4, Good thing is naming convention rules have been followed.
+5. Under BaseRepository I would say that $model variable should be private as we 
+set variable using constructor and get it using getModel function is BaseRepository.
+6. Under BaseRepository $validationRules should be private and should be set using a function setValidationRules that funtion should be public.
+7. Under BaseRepository $attributeNames varialble should be added with private access modifire as an array and setAttributeNames function should be added.
+8. Under BaseRepository inside validatorAttributeNames function should return $attributeNames instead of an empty array.
+9. Under BaseRepository try catch should be added inside all function just in case if model is null.
+10. Under BaseRepository _validate function should be private as its being used undeer validate function only.
+11. Under BaseRepository inside _validate function it will never throw an Exception as return false is there before exception so return false needs to be removed.
+12. Under BaseRepository param \Illuminate\Validation\Validator should be imported in start.
+13. Under BaseRepository inside findOrFail and findBySlug, ModelNotFoundException should be handle using try and catch.
+14. Under BookingRepository variable $model is not required as its already there ub BaseRepository and could be accessed using get model function.
+15, Under BookingRepository inside getUsersJobs function we should check $cuser is null under if condition.
+16. Under BookingRepository inside getUsersJobsHistory function we should check $cuser is null under if condition.
+17. Under BookingRepository inside getUsersJobsHistory function return should be outside if and else and for customer inside paginate function $pagenum variable should be passed.
+18. Under BookingRepository inside getUsersJobsHistory function $totaljobs and $numpages should be outside if and elseif and normal and emergency jobs should be sorted using foreach loop.
+19. Under BookingRepository inside store function over all function should be optimized and fixed and it has repeating conditions for immdiate jobs.
+20. Under BookingRepository inside storeJobEmail function mailer email send should be done under event.
+21. Under BookingRepository inside jobEnd function $job_detail name should be $job and check if $job is not null.
 
 
-IMPORTANT: Make two commits. First commit with original code. Second with your refactor so we can easily trace changes. 
-
-
-NB: you do not need to set up the code on local and make the web app run. It will not run as its not a complete web app. This is purely to assess you thoughts about code, formatting, logic etc
-
-
-===== So expected output is a GitHub link with either =====
-
-1. Readme described above (point X above) + refactored code 
-OR
-2. Readme described above (point X above) + refactored core + a unit test of the code that we have sent
-
-Thank you!
-
-
+For more details I have refactored the code please check changelog.
